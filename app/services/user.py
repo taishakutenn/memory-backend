@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
 from app.db.user import User
-from app.security.security import get_password_hash, verify_password
+from app.security.password import get_password_hash, verify_password
 from app.core.exceptions.user import UserAlreadyExists, UserNotFound, InvalidCredentials
 from app.repositories.user import UserRepository
 
@@ -26,6 +26,12 @@ class UserService:
 
     async def get_user_by_email(self, db: AsyncSession, email: str) -> User:
         user = await self.user_repo.get_user_by_email(db, email)
+        if user is None:
+            raise UserNotFound()
+        return user
+
+    async def get_user_by_nickname(self, db: AsyncSession, nickname: str) -> User:
+        user = await self.user_repo.get_user_by_nickname(db, nickname)
         if user is None:
             raise UserNotFound()
         return user

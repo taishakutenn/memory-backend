@@ -12,3 +12,8 @@ class UserCreate(TuneModel):
 class UserShow(TuneModel):
     nickname: str
     email: EmailStr
+    disabled: bool | None = None
+
+
+class UserInDb(UserShow):
+    hashed_password: str
