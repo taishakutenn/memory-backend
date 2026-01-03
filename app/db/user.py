@@ -1,10 +1,13 @@
-from uuid import UUID, uuid4
+from app.db.base import Base
+from app.db.note import Note
+from app.db.task import Task
+from app.db.group_task import GroupTask
 
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Boolean
 from sqlalchemy.dialects.postgresql import UUID as PG_UUID
 
-from app.db.base import Base
+from uuid import UUID, uuid4
 
 
 class User(Base):
@@ -17,4 +20,6 @@ class User(Base):
     disabled: Mapped[bool] = mapped_column(Boolean, nullable=True, default=False)
 
     # Взаимосвязи с другими таблицами
-    ...
+    notes: Mapped[list["Note"]] = relationship("Note", back_populates="owner") # Заметки
+    tasks: Mapped[list["Task"]] = relationship("Task", back_populates="owner")  # Задачи
+    group_tasks: Mapped[list["GroupTask"]] = relationship("GroupTask", back_populates="owner") # Группы задач
