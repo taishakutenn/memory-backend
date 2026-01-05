@@ -19,7 +19,7 @@ class AuthService:
         # Устанавливаем время жизни токена
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
         # Генерируем токен доступа
-        access_token = create_access_token(
+        access_token = await create_access_token(
             data={"sub": user.nickname}, expires_delta=access_token_expires
         )
 

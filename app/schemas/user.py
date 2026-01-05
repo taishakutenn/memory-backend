@@ -1,4 +1,5 @@
 from pydantic import EmailStr
+from uuid import UUID
 
 from app.schemas import TuneModel
 
@@ -13,6 +14,10 @@ class UserShow(TuneModel):
     nickname: str
     email: EmailStr
     disabled: bool | None = None
+
+
+class MeShow(UserShow):
+    uuid: UUID
 
 
 class UserInDb(UserShow):

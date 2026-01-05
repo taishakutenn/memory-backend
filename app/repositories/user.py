@@ -26,3 +26,8 @@ class UserRepository:
         result = await db.execute(select(User))
         users = result.scalars().all()
         return list(users)
+
+    async def get_user_by_uuid(self, db: AsyncSession, user_uuid) -> User | None:
+        result = await db.execute(select(User).where(User.uuid == user_uuid))
+        user = result.scalar_one_or_none()
+        return user

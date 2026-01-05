@@ -35,7 +35,7 @@ async def authenticate_user(db: AsyncSession, nickname: str, password: str) -> U
     return user
 
 
-def create_access_token(data: dict, expires_delta: timedelta | None = None):
+async def create_access_token(data: dict, expires_delta: timedelta | None = None):
     """Служебная функция для генерации нового токена"""
     to_encode = data.copy()
 
