@@ -8,3 +8,7 @@ class InactiveUser(Exception):
 
 class UserUnauthorized(Exception):
     pass
+
+
+class AccessDenied(Exception):
+    pass

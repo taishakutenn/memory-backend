@@ -22,3 +22,7 @@ class MeShow(UserShow):
 
 class UserInDb(UserShow):
     hashed_password: str
+
+
+class PatchUserNickname(TuneModel):
+    nickname: str

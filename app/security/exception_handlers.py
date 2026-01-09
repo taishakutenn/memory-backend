@@ -17,6 +17,13 @@ async def inactive_user(request: Request, exc: Exception):
     )
 
 
+async def access_denied(request: Request, exc: Exception):
+    return JSONResponse(
+        status_code=status.HTTP_403_FORBIDDEN,
+        content={"detail": "Access denied"},
+    )
+
+
 async def user_unauthorized(request: Request, exc: Exception):
     return JSONResponse(
         status_code=status.HTTP_401_UNAUTHORIZED,

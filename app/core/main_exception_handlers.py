@@ -8,8 +8,12 @@ from app.core.exception_handlers.user import (user_already_exists_handler,
                                               user_not_found_handler)
 
 # Auth
-from app.security.exceptions import CredentialsException, InactiveUser, UserUnauthorized
-from app.security.exception_handlers import credentials_exception, inactive_user, user_unauthorized
+from app.security.exceptions import CredentialsException, InactiveUser, UserUnauthorized, AccessDenied
+from app.security.exception_handlers import credentials_exception, inactive_user, user_unauthorized, access_denied
+
+# Note
+from app.core.exceptions.note import NoteNotFound
+from app.core.exception_handlers.note import note_not_found_handler
 
 
 # Функция, которая зарегестрирует все обработчики ошибок в fastApi
@@ -22,3 +26,7 @@ def register_exception_handlers(app: FastAPI) -> None:
     app.add_exception_handler(CredentialsException, credentials_exception)
     app.add_exception_handler(InactiveUser, inactive_user)
     app.add_exception_handler(UserUnauthorized, user_unauthorized)
+    app.add_exception_handler(AccessDenied, access_denied)
+
+    # Note
+    app.add_exception_handler(NoteNotFound, note_not_found_handler)
