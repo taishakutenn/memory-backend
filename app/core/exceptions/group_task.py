@@ -1,0 +1,2 @@
+class GroupTaskNotFound(Exception):
+    pass

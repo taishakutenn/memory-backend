@@ -15,6 +15,10 @@ from app.security.exception_handlers import credentials_exception, inactive_user
 from app.core.exceptions.note import NoteNotFound
 from app.core.exception_handlers.note import note_not_found_handler
 
+# GroupTask
+from app.core.exceptions.group_task import GroupTaskNotFound
+from app.core.exception_handlers.group_task import group_task_not_found_handler
+
 
 # Функция, которая зарегестрирует все обработчики ошибок в fastApi
 def register_exception_handlers(app: FastAPI) -> None:
@@ -30,3 +34,6 @@ def register_exception_handlers(app: FastAPI) -> None:
 
     # Note
     app.add_exception_handler(NoteNotFound, note_not_found_handler)
+
+    # GroupTask
+    app.add_exception_handler(GroupTaskNotFound, group_task_not_found_handler)

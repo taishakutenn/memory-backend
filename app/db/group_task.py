@@ -17,7 +17,7 @@ class GroupTask(Base):
     __tablename__ = "group_tasks"
 
     title: Mapped[str] = mapped_column(String, primary_key=True, index=True)
-    owner_uuid: Mapped[UUID] = mapped_column(PG_UUID(as_uuid=True), ForeignKey("users.uuid"), nullable=False)
+    owner_uuid: Mapped[UUID] = mapped_column(PG_UUID(as_uuid=True), ForeignKey("users.uuid"), nullable=False, primary_key=True)
 
     # Взаимосвязи с другими таблицами
     owner: Mapped["User"] = relationship("User", back_populates="group_tasks")

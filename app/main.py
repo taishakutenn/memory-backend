@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import uvicorn
 
 # Добавляем глобальные объекты
-from api.main_routes import main_router  # Хендлеры для запросов к апи
+from app.api.main_routes import main_router  # Хендлеры для запросов к апи
 from app.core.main_exception_handlers import register_exception_handlers  # Хендлеры ошибок
 
 app = FastAPI()

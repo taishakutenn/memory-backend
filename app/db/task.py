@@ -19,7 +19,7 @@ class Task(Base):
     title: Mapped[str] = mapped_column(String(100), unique=False, index=True, nullable=True)
     date_start_period: Mapped[datetime] = mapped_column(TIMESTAMP(precision=0))
     date_end_period: Mapped[datetime] = mapped_column(TIMESTAMP(precision=0))
-    status: Mapped[str] = mapped_column(String(20), default="absent")
+    status: Mapped[str] = mapped_column(String(20), default="В процессе")
 
     # Взаимосвязи с другими таблицами
     owner: Mapped["User"] = relationship("User", back_populates="tasks")
